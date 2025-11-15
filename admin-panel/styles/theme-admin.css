@@ -1,0 +1,170 @@
+/*
+  Dark Mode Glassmorphism Style - Admin Portal
+  Author: Gemini
+  Palette:
+  --main-bg-color: #31694E;
+  --primary-text-color: #F0E491;
+  --cta-button-color: #BBC863;
+  --card-bg-color: rgba(101, 140, 88, 0.25);
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --main-bg-color: #31694E;
+  --primary-text-color: #F0E491;
+  --cta-button-color: #BBC863;
+  --card-bg-color: rgba(101, 140, 88, 0.25);
+  --card-border-color: rgba(255, 255, 255, 0.1);
+}
+
+html, body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--main-bg-color);
+  color: var(--primary-text-color);
+}
+
+#wrapper {
+  padding: 200px 30px;
+}
+
+/* Header */
+.admin-navbar {
+  background: rgba(101, 140, 88, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--card-border-color);
+  padding: 1rem 0;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.admin-logo {
+  color: var(--primary-text-color);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+/* Side nav */
+.navbar-nav.side-nav {
+  background: var(--card-bg-color);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-right: 1px solid var(--card-border-color);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 180px;
+  bottom: 0;
+  overflow-y: auto;
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+}
+
+.navbar-nav.side-nav .nav-link {
+  color: var(--primary-text-color);
+  padding: 0.8rem 1.5rem;
+  margin-left: 0;
+  border-left: 4px solid transparent;
+  transition: all .15s ease;
+}
+
+.navbar-nav.side-nav .nav-link:hover {
+  background: rgba(187, 200, 99, 0.1);
+  color: var(--cta-button-color);
+  border-left-color: var(--cta-button-color);
+}
+
+.navbar-nav.side-nav .nav-link.active {
+  background: rgba(187, 200, 99, 0.2);
+  color: var(--cta-button-color);
+  border-left-color: var(--cta-button-color);
+}
+
+/* Cards */
+.card {
+  margin-bottom: 18px;
+  background: var(--card-bg-color);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border-color);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  color: var(--primary-text-color);
+}
+
+/* Tables */
+.table thead th {
+  background: transparent;
+  color: var(--cta-button-color);
+  font-weight: 600;
+}
+
+.table tbody td {
+  background: rgba(101, 140, 88, 0.1);
+  color: var(--primary-text-color);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--cta-button-color);
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: var(--main-bg-color);
+  font-weight: 700;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Forms */
+.form-control {
+  background: rgba(101, 140, 88, 0.2);
+  border: 1px solid var(--card-border-color);
+  border-radius: 1.5rem;
+  color: var(--primary-text-color);
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 2px rgba(187, 200, 99, 0.2);
+  border-color: var(--cta-button-color);
+  background: rgba(101, 140, 88, 0.3);
+}
+
+/* Responsive adjustments */
+@media (min-width: 992px) {
+  #wrapper {
+    margin-left: 180px;
+    padding: 200px 30px 30px;
+  }
+}
+
+.admin-footer {
+  background: rgba(101, 140, 88, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  margin-top: 30px;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+  color: #ccc;
+}
+
+.az-filter-link {
+  display: inline-block;
+  padding: 0.5rem 0.8rem;
+  margin: 0.25rem;
+  background-color: rgba(101, 140, 88, 0.2);
+  color: var(--primary-text-color);
+  border-radius: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.az-filter-link:hover {
+  background-color: var(--cta-button-color);
+  color: var(--main-bg-color);
+  transform: translateY(-2px);
+}

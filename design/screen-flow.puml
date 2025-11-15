@@ -1,0 +1,88 @@
+@startuml
+"Screen Flow - Bookstore Web App"
+left to right direction
+skinparam rectangle {
+  BackgroundColor LightBlue
+  BorderColor Black
+}
+
+' Pages
+rectangle "Home\n(index.php)" as Home
+rectangle "Category List\n(categories/index.php)" as Category
+rectangle "Product Details\n(shopping/single.php)" as Product
+rectangle "Cart\n(shopping/cart.php)" as Cart
+rectangle "Checkout\n(shopping/checkout.php)" as Checkout
+rectangle "Charge (Payment)\n(shopping/charge.php)" as Charge
+rectangle "Success\n(success.php)" as Success
+rectangle "Download\n(download.php)" as Download
+rectangle "Login\n(auth/login.php)" as Login
+rectangle "Register\n(auth/register.php)" as Register
+rectangle "Logout\n(auth/logout.php)" as Logout
+rectangle "User Orders\n(users/orders.php)" as Orders
+rectangle "Wishlist\n(shopping/wishlist.php)" as Wishlist
+rectangle "Contact\n(contact.php)" as Contact
+
+' Admin screens
+package "Admin Area" {
+  rectangle "Admin Login\n(admin-panel/admins/login-admins.php)" as AdminLogin
+  rectangle "Admin Dashboard\n(admin-panel/index.php)" as AdminDashboard
+  rectangle "Manage Products\n(admin-panel/products-admins/show-products.php)" as AdminProducts
+  rectangle "Create/Edit Product\n(admin-panel/products-admins/create-products.php)" as AdminEditProduct
+  rectangle "Manage Categories\n(admin-panel/categories-admins/show-categories.php)" as AdminCategories
+  rectangle "Manage Orders\n(admin-panel/orders.php)" as AdminOrders
+}
+
+' Global links (header/footer)
+Home --> Category : "View categories"
+Home --> Product : "Click product"
+Category --> Product : "Select product"
+Product --> Cart : "Add to cart"
+Product --> Wishlist : "Add to wishlist"
+Product --> Login : "Require login -> Login" 
+
+Cart --> Checkout : "Proceed to checkout"
+Checkout --> Charge : "Submit payment"
+Charge --> Success : "Payment OK"
+Charge --> Download : "If digital product -> provide file"
+Success --> Orders : "View order details"
+
+Login --> Home : "After login -> redirect"
+Register --> Login : "After register -> login"
+Logout --> Home : "After logout -> redirect"
+
+' Header shortcuts
+Home --> Cart : "Header: Cart"
+Home --> Login : "Header: Login"
+Home --> Register : "Header: Register"
+Home --> Contact : "Header: Contact"
+Home --> AdminLogin : "Admin link"
+
+' User flows
+UserNote : "Registered user flows" as N
+N ..> Orders
+N ..> Wishlist
+
+' Admin flows
+AdminLogin --> AdminDashboard : "Successful auth"
+AdminDashboard --> AdminProducts : "Manage products"
+AdminDashboard --> AdminCategories : "Manage categories"
+AdminDashboard --> AdminOrders : "View orders"
+AdminProducts --> AdminEditProduct : "Create/Edit product"
+
+' Edge cases & redirects
+Checkout --> Login : "If not logged in, redirect to Login"
+Charge --> Checkout : "Payment error -> back to Checkout"
+
+note top of Home
+  Top-level entry point of the app
+  Shows featured books / categories
+end note
+
+note right of Checkout
+  Checkout page can:
+  - collect shipping info
+  - choose payment method
+  - review order
+end note
+
+@enduml
