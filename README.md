@@ -7,7 +7,7 @@ Tài liệu này mô tả chi tiết về dự án website bán E-book, bao gồ
 # 1. Giới thiệu
 
 ### 1.1. Mục tiêu dự án
-- **Xây dựng một hệ thống E-commerce hoàn chỉnh:** Tạo ra một website cho phép người dùng xem, tìm kiếm, mua và tải xuống các sản phẩm sách điện tử (E-book).
+- **Xây dựng một hệ thống E-commerce hoàn chỉnh:** Tạo ra một website cho phép người dùng xem, tìm kiếm, mua và tải xuống các sản phẩm sách điện tử (E-book), cũng như quản lý danh sách yêu thích (Wishlist).
 - **Xây dựng trang quản trị (Admin Panel):** Cung cấp giao diện cho quản trị viên để quản lý toàn bộ hệ thống, bao gồm quản lý sản phẩm, danh mục, đơn hàng và người dùng.
 - **Áp dụng kiến thức chuyên ngành:** Vận dụng các kiến thức về PHP, MySQL, lập trình hướng đối tượng (thông qua PDO), và các công nghệ web hiện đại (Bootstrap, Stripe API) để xây dựng một ứng dụng thực tế.
 - **Tối ưu trải nghiệm người dùng (UX):** Thiết kế giao diện thân thiện, dễ sử dụng, và quy trình mua hàng đơn giản, nhanh chóng.
@@ -32,7 +32,7 @@ Tài liệu này mô tả chi tiết về dự án website bán E-book, bao gồ
 - **Quản lý Dependencies (PHP):** **Composer**. Dùng để cài đặt và quản lý các thư viện của bên thứ ba.
 - **Thư viện & API:**
     - **Stripe PHP Library:** Tích hợp cổng thanh toán Stripe để xử lý các giao dịch thẻ tín dụng một cách an toàn và chuyên nghiệp.
-    - **PHPMailer (dự đoán):** Dựa trên cấu trúc file trong `src/`, có thể hệ thống đã hoặc sẽ sử dụng PHPMailer để gửi email (ví dụ: xác nhận đơn hàng, reset mật khẩu).
+    - **PHPMailer:** Hệ thống sử dụng thư viện PHPMailer để gửi email (ví dụ: xác nhận đơn hàng, reset mật khẩu).
 
 ---
 
@@ -70,13 +70,14 @@ Hệ thống được xây dựng theo mô hình Client-Server.
 ### 3.3. Phân tách các module
 Dự án được tổ chức thành các module rõ ràng dựa trên cấu trúc thư mục:
 - **`auth`**: Quản lý xác thực người dùng (Đăng ký, Đăng nhập, Đăng xuất).
-- **`shopping`**: Xử lý các nghiệp vụ mua sắm (Giỏ hàng, Thanh toán, Lịch sử mua hàng).
+- **`shopping`**: Xử lý các nghiệp vụ mua sắm (Giỏ hàng, Thanh toán, Lịch sử mua hàng, Danh sách yêu thích).
 - **`categories`**: Phân loại và hiển thị sản phẩm theo danh mục.
 - **`admin-panel`**: Module quản trị, được tách biệt hoàn toàn với giao diện người dùng. Bao gồm các module con:
     - `admins`: Quản lý tài khoản quản trị viên.
     - `categories-admins`: Thêm, sửa, xóa danh mục.
     - `products-admins`: Thêm, sửa, xóa sản phẩm E-book.
 - **`config`**: Chứa file cấu hình kết nối CSDL và các khóa API.
+- **`design`**: Chứa các tài liệu thiết kế như `screen-flow.puml`.
 - **`includes` / `layouts`**: Chứa các thành phần giao diện tái sử dụng (header, footer).
 
 ---
