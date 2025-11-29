@@ -10,10 +10,23 @@
   }
 
 
-  if(!isset($_SESSION['username'])) {
+  if(!isset($_SESSION['user_id'])) {
     header("location: ".APPURL."");
   }
 
+  // Fetch user data for autofill
+  $user_name = '';
+  $user_email = '';
+  if(isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $query = $conn->prepare("SELECT username, email FROM users WHERE id = :id");
+    $query->execute([':id' => $user_id]);
+    $user_data = $query->fetch(PDO::FETCH_OBJ);
+    if($user_data) {
+      $user_name = $user_data->username;
+      $user_email = $user_data->email;
+    }
+  }
 
 ?>
       <!-- Heading -->
@@ -69,14 +82,14 @@
                 <div class="md-form mb-5">
                   <label for="email" class="text-white">Username</label>
   
-                  <input type="text"  name="username" class="form-control form-control-lg" placeholder="Username" aria-describedby="basic-addon1">
+                  <input type="text"  name="username" class="form-control form-control-lg" placeholder="Username" aria-describedby="basic-addon1" value="<?php echo htmlspecialchars($user_name); ?>" readonly>
                 </div>
   
                 <!--email-->
                 <div class="md-form mb-5">
                   <label for="email" class="text-white">Email</label>
   
-                  <input type="text" name="email" id="email" class="form-control form-control-lg" placeholder="youremail@example.com">
+                  <input type="text" name="email" id="email" class="form-control form-control-lg" placeholder="youremail@example.com" value="<?php echo htmlspecialchars($user_email); ?>" readonly>
                 </div>
   
                
@@ -88,7 +101,7 @@
                   src="https://checkout.stripe.com/checkout.js"
                   class="stripe-button"
                   data-key="pk_test_51M94h5Hp65tXrQ3PiYbpcRZmY8t09IMUrVwgrDjGlOXUJiGpK09MhKEAjzqZ2rBn13M46Hquv1fPneDRRMesw9AW00ws2aTeJC"
-                  
+                  data-email="<?php echo htmlspecialchars($user_email); ?>"
                   data-currency="usd"
                   data-label="pay now"
                 >  

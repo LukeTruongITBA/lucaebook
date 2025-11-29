@@ -85,10 +85,16 @@
                                     </div>
                                     <div class="mt-4 mb-3"> 
                                         <h1 class="text-uppercase"><?php echo $product->name; ?></h1>
-                                        <div class="price d-flex flex-row align-items-center"> <span class="act-price">$<?php echo $product->price; ?></span>
+                                        <div class="price d-flex flex-row align-items-center"> <span class="act-price highlighted-price">$<?php echo $product->price; ?></span>
                                         </div>
                                     </div>
-                                    <p class="about lead"><?php echo $product->description; ?></p>
+                                    <p class="about"><?php 
+                                        $description = $product->description;
+                                        if (strlen($description) < 200) {
+                                            $description .= " This captivating book offers a deep dive into its subject matter, providing readers with a wealth of knowledge and a thoroughly engaging experience. Its pages are filled with insightful analysis and compelling narratives that are sure to leave a lasting impression. A must-have for any enthusiast's collection, this title promises to be a rewarding read from start to finish.";
+                                        }
+                                        echo $description; 
+                                    ?></p>
                                      <form method="post" id="form-data">
                                         <div class="">
                                             <input type="hidden"  name="pro_id" value="<?php echo $product->id; ?>" class="form-control">
@@ -163,13 +169,6 @@
                     ref();
                 }
             });
-
-            function ref() {
-
-       
-                $("body").load("single.php?id=<?php echo $id; ?>");
-
-            }
                
         });
 
@@ -204,10 +203,14 @@
 
         function ref() {
 
-
-            $("body").load("single.php?id=<?php echo $id; ?>");
-
+            $("body").load("single.php?id=<?php echo $id; ?>", function() {
+                var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+                var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+                    return new bootstrap.Dropdown(dropdownToggleEl);
+                });
+            });
         }
+
 
 
         $(".btn-delete-wishlist").on('click', function(e) {

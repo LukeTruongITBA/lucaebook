@@ -113,8 +113,8 @@ $allRows = $rows->fetchAll(PDO::FETCH_OBJ);
                         </select>
                     </div>
                 </div>
-                <div class="col-md-2 d-flex">
-                    <button type="submit" class="btn btn-primary btn-search-margin">Search</button>
+                <div class="col-md-2 search-filter-buttons">
+                    <button type="submit" class="btn btn-primary">Search</button>
                     <a href="index.php" class="btn btn-danger">Clear</a>
                 </div>
             </div>
@@ -132,11 +132,17 @@ $allRows = $rows->fetchAll(PDO::FETCH_OBJ);
                     <img class="card-img-top" src="<?php echo IMGURL; ?>/<?php echo $product->image; ?>">
             </div>
                     <div class="card-body product-card-body card-content">
-                        <h5 class="d-inline text-dark"><b><?php echo $product->name; ?></b></h5>
-                        <h5 class="d-inline">
-                            <div class="d-inline">($<?php echo $product->price; ?>/item)</div>
+                        <h5><b><?php echo $product->name; ?></b></h5>
+                        <h5>
+                            <div class="d-inline highlighted-price">($<?php echo $product->price; ?>/item)</div>
                         </h5>
-                        <p><?php echo substr($product->description, 0, 120); ?></p>
+                        <div><?php
+                            $description = $product->description;
+                            if (strlen($description) < 100) {
+                                $description .= " Dive into a captivating narrative that will keep you on the edge of your seat. This masterpiece of literature is a must-read for any book lover.";
+                            }
+                            echo substr($description, 0, 200); 
+                        ?></div>
                         <a href="<?php echo APPURL; ?>/shopping/single.php?id=<?php echo $product->id; ?>" class="btn btn-primary w-100 rounded btn-more"> More <i class="fas fa-arrow-right"></i> </a>
                     </div>
                 </div>

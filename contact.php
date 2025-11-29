@@ -1,4 +1,22 @@
-<?php require "includes/header.php"; ?>   
+<?php require "includes/header.php"; ?>
+<?php require "config/config.php"; ?>
+<?php
+
+$user_name = '';
+$user_email = '';
+
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $select_user = $conn->prepare("SELECT username, email FROM users WHERE id = :id");
+    $select_user->execute([':id' => $user_id]);
+    $user_data = $select_user->fetch(PDO::FETCH_OBJ);
+
+    if ($user_data) {
+        $user_name = $user_data->username;
+        $user_email = $user_data->email;
+    }
+}
+?>
 <section class="mb-4 container">
 
     <div class="glass-card p-5">
@@ -20,9 +38,9 @@
                         <!--Grid column-->
                         <div class="col-md-6">
                             <div class="md-form mb-0">
-                                <label for="name" class="text-white">Your name</label>
+                                <label for="fname" class="text-white">First name</label>
     
-                                <input type="text" id="name" name="name" class="form-control form-control-lg">
+                                <input type="text" id="fname" name="fname" class="form-control form-control-lg" value="<?php echo htmlspecialchars($user_name); ?>" style="color: var(--primary-text-color); background-color: var(--card-bg-color);">
                             </div>
                         </div>
                         <!--Grid column-->
@@ -30,9 +48,9 @@
                         <!--Grid column-->
                         <div class="col-md-6">
                             <div class="md-form mb-0">
-                                <label for="email" class="text-white">Your email</label>
+                                <label for="lname" class="text-white">Last name</label>
     
-                                <input type="text" id="email" name="email" class="form-control form-control-lg">
+                                <input type="text" id="lname" name="lname" class="form-control form-control-lg" value="<?php echo htmlspecialchars(''); ?>" style="color: var(--primary-text-color); background-color: var(--card-bg-color);">
                             </div>
                         </div>
                         <!--Grid column-->
@@ -54,6 +72,18 @@
     
                     <!--Grid row-->
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form mb-0">
+                                <label for="email" class="text-white">Your email</label>
+    
+                                <input type="text" id="email" name="email" class="form-control form-control-lg" value="<?php echo htmlspecialchars($user_email); ?>" style="color: var(--primary-text-color); background-color: var(--card-bg-color);">
+                            </div>
+                        </div>
+                    </div>
+                    <!--Grid row-->
+    
+                    <!--Grid row-->
+                    <div class="row">
     
                         <!--Grid column-->
                         <div class="col-md-12">
@@ -61,7 +91,7 @@
                             <div class="md-form">
                                 <label for="message" class="text-white">Your message</label>
     
-                                <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea form-control-lg"></textarea>
+                                <textarea type="text" id="message" name="message" rows="8" class="form-control md-textarea form-control-lg"></textarea>
                             </div>
     
                         </div>

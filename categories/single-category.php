@@ -17,13 +17,23 @@
  ?>      
         <div class="row mt-5">
             <?php foreach($allRows as $product) : ?>
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                    <div class="card product-card" >
-                        <img height="213px" class="card-img-top" src="<?php echo IMGURL; ?>/<?php echo  $product->image; ?>">
-                        <div class="card-body product-card-body card-content" >
-                            <h5 class="d-inline"><b><?php echo  $product->name; ?></b> </h5>
-                            <h5 class="d-inline"><div class="text-muted d-inline">($<?php echo  $product->price; ?>/item)</div></h5>
-                            <p><?php echo  substr($product->description, 0, 120); ?> </p>
+                <div class="col-lg-4 col-md-6 col-sm-12 product-card mb-4">
+                    <div class="card" >
+                                    <div class="product-card-img-container">
+                <img class="card-img-top" src="<?php echo IMGURL; ?>/<?php echo  $product->image; ?>">
+            </div>
+                        <div class="card-body" >
+                                                        <h5><b><?php echo  $product->name; ?></b> </h5>
+                            <h5>
+                                <div class="d-inline highlighted-price">($<?php echo $product->price; ?>/item)</div>
+                            </h5>
+                            <div><?php
+                                $description = $product->description;
+                                if (strlen($description) < 100) {
+                                    $description .= " Dive into a captivating narrative that will keep you on the edge of your seat. This masterpiece of literature is a must-read for any book lover.";
+                                }
+                                echo substr($description, 0, 200); 
+                            ?></div>
                             <a href="<?php echo APPURL; ?>/shopping/single.php?id=<?php echo  $product->id; ?>"  class="btn btn-primary w-100 rounded my-2 btn-more"> More <i class="fas fa-arrow-right"></i> </a>      
         
                         </div>

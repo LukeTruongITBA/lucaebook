@@ -137,6 +137,15 @@ html, body {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
+.product-card {
+  transition: all 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
 .card .card-img-top {
   border-radius: 1.5rem 1.5rem 0 0;
 }
@@ -164,11 +173,19 @@ html, body {
   flex-grow: 1;
 }
 
+.card .card-body div {
+  flex-grow: 1;
+}
+
 .card .btn {
   margin-top: auto;
 }
 
-.card .card-title, .card h5 b {
+.card .card-title, .card h5 {
+  color: var(--primary-text-color);
+}
+
+.card h5 b {
   color: var(--primary-text-color);
 }
 
@@ -321,8 +338,9 @@ html, body {
   margin-bottom: 0; /* Ensure no extra margin at the bottom */
 }
 
-.btn-search-margin {
-  margin-right: 10px;
+.search-filter-buttons {
+    display: flex;
+    gap: 10px;
 }
 
 #scrollToTopBtn {
@@ -350,4 +368,36 @@ html, body {
   margin: 0 auto; /* Center the image */
   object-fit: contain; /* Ensures the whole image is visible, letterboxing if necessary */
 }
+
+.price-tag::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 0 2px var(--cta-button-color);
+}
+
+.highlighted-price {
+  font-size: 1.8rem; /* Larger font size */
+  font-weight: 700; /* Bolder */
+  color: var(--cta-button-color); /* Use a prominent color */
+  background-color: rgba(187, 200, 99, 0.1); /* Subtle background */
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.5rem;
+  display: inline-block;
+}
+
+
+
+
+
+
+
+
+
 
