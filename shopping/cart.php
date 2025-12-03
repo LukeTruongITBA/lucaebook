@@ -42,7 +42,7 @@
                       </div>
     
     
-                      <table class="table table-dark" height="190" >
+                      <table class="table text-white" height="190" >
                         <thead>
                           <tr>
                             <th scope="col">Image</th>
@@ -59,7 +59,7 @@
                             <?php foreach($allProducts as $product) : ?>
                               <tr class="mb-4">
                                 <td><img width="100" height="100"
-                                src="<?php echo IMGURL; ?>/<?php echo $product->pro_image; ?>"
+                                src="../admin-panel/products-admins/images/<?php echo $product->pro_image; ?>"
                                 class="img-fluid rounded-3" alt="Cotton T-shirt">
                                 </td>
                                 <td><?php echo $product->pro_name; ?></td>

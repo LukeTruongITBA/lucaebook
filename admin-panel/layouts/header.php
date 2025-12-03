@@ -68,15 +68,22 @@
               </a>
             </li>
             
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <?php echo $_SESSION['adminname']; ?>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="<?php echo ADMINURL; ?>/admins/logout-admins.php">Logout</a>
-                
-            </li>
-          <?php endif; ?>
+                        <li class="nav-item dropdown">
+            
+                          <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
+                            <?php echo $_SESSION['adminname']; ?>
+            
+                          </a>
+            
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            
+                            <a class="dropdown-item" href="<?php echo ADMINURL; ?>/admins/logout-admins.php">Logout</a>
+            
+                          </div>
+                        </li>
+            
+                      <?php endif; ?>
                           
           
         </ul>
